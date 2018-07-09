@@ -11,8 +11,13 @@ module.exports = {
       },
       {
         test: /\.(s*)css$/,
-        loaders: ["style-loader", "css-loader", "sass-loader"],
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
         exclude: /node_modules/
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'file-loader',
+        include: path.join(__dirname, '/src/images')
       }
     ]
   },

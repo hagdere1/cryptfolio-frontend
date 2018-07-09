@@ -1,23 +1,22 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
-class Container extends React.Component {
-  componentDidMount() {
+const styles = {}
 
-  }
-  
+class Sidebar extends React.Component {
   render() {
     return (
-      <div>Login Page</div>
+      <div style={{width: 200, backgroundColor: "#ccc", flex: "initial"}}>
+        Sidebar
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    loggedIn: true
+
   }
 }
 
@@ -25,4 +24,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container)
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

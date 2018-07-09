@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -9,4 +10,29 @@ html {
 
 body {
   height: 100%;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+#app {
+  height: 100%;
+}
+
+.placeholder {
+  border: 1px solid #fff;
+  height: 50px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-item {
+  border: 1px solid #fff;
+  background-color: #d6e9fe;
+  flex: 1;
+}
+
+.footer-one {
+  flex: 2;
 }
