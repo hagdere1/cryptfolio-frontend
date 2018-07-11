@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import AppBar from '@material-ui/core/AppBar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -31,13 +32,12 @@ const styles = {
     color: "#5995DA",
     backgroundColor: "#D6E9FE",
     display: "flex",
-    justifyContent: "center"
-  },
-  header: {
-    width: "90%",
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "center"
+    flexDirection: "row",
+    paddingRight: 20,
+    paddingLeft: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
+    fontSize: "0.75em"
   }
 }
 
@@ -62,8 +62,9 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div style={styles.headerContainer} className='header-container'>
-        <div style={styles.header}>
+
+        <AppBar style={styles.headerContainer} position="static">
+          <h1>Cryptfolio</h1>
           <IconButton
             aria-owns={open ? 'menu-appbar' : null}
             aria-haspopup="true"
@@ -88,8 +89,8 @@ class Header extends React.Component {
           >
             <MenuItem>Sign Out</MenuItem>
           </Menu>
-        </div>
-      </div>
+        </AppBar>
+
     );
   }
 }
