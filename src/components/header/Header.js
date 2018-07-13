@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import UserApi from '../../api/userApi';
 
 import AppBar from '@material-ui/core/AppBar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -87,7 +88,7 @@ class Header extends React.Component {
             open={!!this.state.anchorEl}
             onClose={this.handleClose}
           >
-            <MenuItem>Sign Out</MenuItem>
+            <MenuItem onClick={() => this.props.logout(this.props.currentUser.auth_token)}>Sign Out</MenuItem>
           </Menu>
         </AppBar>
 
@@ -97,12 +98,14 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-
+    currentUser: state.user.currentUser
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({
+    logout: UserApi.logout
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
