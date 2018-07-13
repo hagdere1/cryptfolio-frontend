@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Holdings from '../portfolio/Holdings';
 
 const styles = {
   container: {
@@ -33,15 +34,8 @@ class Content extends React.Component {
           <div className="tab" style={styles.tab}>TAB</div>
           <div className="tab" style={styles.tab}>TAB</div>
         </div>
-        <div style={{display: "flex", flexDirection: "column"}}>
-          <div className="placeholder">Placeholder</div>
-          <div className="placeholder">Placeholder</div>
-          <div className="placeholder">Placeholder</div>
-          <div className="placeholder">Placeholder</div>
-          <div className="placeholder">Placeholder</div>
-          <div className="placeholder">Placeholder</div>
-          <div className="placeholder">Placeholder</div>
-        </div>
+
+        <Holdings />
       </div>
     );
   }
