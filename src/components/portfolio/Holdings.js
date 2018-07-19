@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import PieChart from './PieChart';
 
 const styles = {
   container: {
@@ -17,28 +18,31 @@ class Holdings extends React.Component {
     super(props);
 
     this.state = {
-      holdings: {}
+      holdings: {},
+      pieData: []
     }
   }
 
   componentDidMount() {
     axios.get("http://localhost:3000/api/v1/portfolio", { headers: {'Authorization': 'Token token=' + this.props.currentUser.auth_token} }).then(response => {
-      this.setState({holdings: response.data.data.holdings});
+      let pieData = [];
+      for (let id of Object.keys(response.data.data.holdings)) {
+        let holding = response.data.data.holdings[id];
+
+        pieData.push({
+          name: holding.coin,
+          y: holding.quantity * holding.price
+        });
+      }
+
+      this.setState({holdings: response.data.data.holdings, pieData: pieData});
     });
   }
 
   render() {
     return (
       <div style={styles.container}>
-        {Object.keys(this.state.holdings).map(id => {
-          return (
-            <div key={id}>
-              <p>Coin ID: {this.state.holdings[id].coin_id}</p>
-              <p>Quantity: {this.state.holdings[id].quantity}</p>
-              <p>Price: {this.state.holdings[id].price}</p>
-            </div>
-          );
-        })}
+        <PieChart data={this.state.pieData} />
       </div>
     );
   }
