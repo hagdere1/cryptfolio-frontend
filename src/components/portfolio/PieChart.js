@@ -31,7 +31,7 @@ class PieChart extends React.Component {
 
         <Chart backgroundColor={null} />
 
-        <PieSeries name="Portfolio" data={this.props.data} size={200} />
+        <PieSeries name="Portfolio" data={this.props.data} size={250} />
 
       </HighchartsChart>
     );

@@ -9,6 +9,8 @@ const styles = {
     display: "flex",
     flex: 1,
     flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
     overflowY: "scroll"
   }
 }

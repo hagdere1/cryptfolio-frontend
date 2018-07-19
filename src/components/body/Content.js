@@ -18,6 +18,8 @@ const styles = {
   },
   tab: {
     display: "flex",
+    justifyContent: "center",
+    width: "50%",
     flexShrink: 0,
     paddingTop: 10,
     paddingBottom: 10,
@@ -30,9 +32,8 @@ class Content extends React.Component {
     return (
       <div style={styles.container}>
         <div style={styles.tabs}>
-          <div className="tab" style={styles.tab}>TAB</div>
-          <div className="tab" style={styles.tab}>TAB</div>
-          <div className="tab" style={styles.tab}>TAB</div>
+          <div className="tab" style={Object.assign({}, styles.tab, {backgroundColor: "#fff", borderRight: "1px solid #bbb"})}>Holdings</div>
+          <div className="tab" style={Object.assign({}, styles.tab, {color: "#808080"})}>Performance</div>
         </div>
 
         <Holdings />
