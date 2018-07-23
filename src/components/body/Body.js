@@ -2,6 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { Route, Switch, withRouter } from 'react-router-dom';
+
+
 import Sidebar from './Sidebar';
 import Content from './Content';
 
@@ -28,4 +31,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Body)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Body))

@@ -1,13 +1,16 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import { Route, Switch, withRouter } from 'react-router-dom';
+
 import axios from 'axios';
 import Header from './header/Header';
 import Body from './body/Body';
 import Footer from './footer/Footer';
 import Grid from './Grid';
 
-import {store} from '../store/configureStore';
+import { store } from '../store/configureStore';
 
 import URI from 'urijs';
 
@@ -49,4 +52,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Container))

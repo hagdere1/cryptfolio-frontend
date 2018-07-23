@@ -1,7 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Holdings from '../portfolio/Holdings';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import Portfolio from '../portfolio/Portfolio';
+import Transactions from '../transactions/Transactions';
 
 const styles = {
   container: {
@@ -36,7 +38,10 @@ class Content extends React.Component {
           <div className="tab" style={Object.assign({}, styles.tab, {color: "#808080"})}>Performance</div>
         </div>
 
-        <Holdings />
+        <Switch>
+          <Route path="/portfolio" component={Portfolio} />
+          <Route path="/transactions" component={Transactions} />
+        </Switch>
       </div>
     );
   }
@@ -52,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Content)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Content))

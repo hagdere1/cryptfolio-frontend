@@ -26,6 +26,7 @@ module.exports = {
     path: __dirname + '/build'
   },
   devServer: {
-    contentBase: path.join(__dirname, '/build')
+    contentBase: path.join(__dirname, '/build'),
+    historyApiFallback: true
   }
 };
