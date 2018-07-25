@@ -23,7 +23,8 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/build'
+    path: __dirname + '/build',
+    publicPath: '/build'
   },
   devServer: {
     contentBase: path.join(__dirname, '/build'),

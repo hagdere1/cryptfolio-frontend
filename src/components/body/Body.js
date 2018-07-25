@@ -1,34 +1,21 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
-import { Route, Switch, withRouter } from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 
 import Sidebar from './Sidebar';
 import Content from './Content';
 
-const styles = {}
+const StyledBody = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+`
 
-class Body extends React.Component {
-  render() {
-    return (
-      <div style={{display: "flex", flex: 1, alignItems: "stretch"}}>
-        <Sidebar />
-        <Content />
-      </div>
-    );
-  }
-}
+const Body = () => (
+  <StyledBody>
+    <Sidebar />
+    <Content />
+  </StyledBody>
+);
 
-const mapStateToProps = (state) => {
-  return {
-
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch);
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Body))
+export default withRouter(Body);

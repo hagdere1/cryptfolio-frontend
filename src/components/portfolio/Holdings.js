@@ -6,7 +6,9 @@ import PieChart from './PieChart';
 class Holdings extends React.Component {
   render() {
     return (
-      <PieChart data={this.props.data} />
+      <div>
+        <PieChart data={this.props.data} />
+      </div>
     );
   }
 }

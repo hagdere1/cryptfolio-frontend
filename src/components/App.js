@@ -1,13 +1,17 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
+
 import Container from './Container';
 import Login from './login/Login'
 import UserApi from '../api/userApi';
 import { getCookie } from '../util/auth';
 
-import URI from 'urijs';
+const StyledApp = styled.div`
+  height: 100%;
+`
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,9 +24,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{height: "100%"}}>
+      <StyledApp>
         {this.props.currentUser && this.props.currentUser.auth_token ? <Container /> : <Login />}
-      </div>
+      </StyledApp>
     );
   }
 }
@@ -39,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

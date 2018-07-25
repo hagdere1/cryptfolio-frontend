@@ -3,42 +3,41 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { routerMiddleware } from 'connected-react-router';
+import styled from 'styled-components';
 
-const styles = {
-  container: {
-    width: 200,
-    backgroundColor: "#ccc",
-    flex: "initial",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center"
-  },
-  tab: {
-    color: "#808080",
-    backgroundColor: "#fff",
-    padding: "20px 10px",
-    borderBottom: "1px solid #aaa",
-    backgroundColor: "#f0f0f0"
+const StyledSidebar = styled.aside`
+  width: 200px;
+  background-color: #ccc;
+  flex: initial;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+const Tab = styled.div`
+  color: ${props => props.selected ? "#000" : "#808080"};
+  padding: 20px 10px;
+  border-bottom: 1px solid #aaa;
+  background-color: ${props => props.selected ? "#d6e9fe": "#f0f0f0"};
+
+  &:first-child {
+    border-top: 1px solid #aaa;
   }
-}
+`
 
 class Sidebar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.changeTab = this.changeTab.bind(this);
-  }
-
-  changeTab(path) {
-    this.props.history.push(path);
-  }
-
   render() {
     return (
-      <div style={styles.container}>
-        <div style={Object.assign({}, styles.tab, {borderTop: "1px solid #aaa", color: "#000", backgroundColor: "#D6E9FE"})} onClick={() => this.changeTab("/portfolio")}>Portfolio</div>
-        <div style={styles.tab} onClick={() => this.changeTab("/transactions")}>Transactions</div>
-        <div style={styles.tab}>Market</div>
-      </div>
+      <StyledSidebar>
+        <Tab selected={this.props.pathname.indexOf("/portfolio") !== -1} onClick={() => this.props.history.push("/portfolio/holdings")}>
+          Portfolio
+        </Tab>
+        <Tab selected={this.props.pathname.indexOf("/transactions") !== -1} onClick={() => this.props.history.push("/transactions")}>
+          Transactions
+        </Tab>
+        <Tab>
+          Market
+        </Tab>
+      </StyledSidebar>
     );
   }
 }
@@ -49,9 +48,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-  }, dispatch);
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar))
+export default withRouter(connect(mapStateToProps, null)(Sidebar))

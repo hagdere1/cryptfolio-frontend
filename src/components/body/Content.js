@@ -1,48 +1,43 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import styled from 'styled-components';
+
+import Tabs from './Tabs';
 import Portfolio from '../portfolio/Portfolio';
 import Transactions from '../transactions/Transactions';
 
-const styles = {
-  container: {
-    display: "flex",
-    flex: 1,
-    flexDirection: "column",
-    overflowY: "scroll"
-  },
-  tabs: {
-    display: "flex",
-    flexShrink: 0,
-    justifyContent: "space-around",
-    backgroundColor: "#f0f0f0"
-  },
-  tab: {
-    display: "flex",
-    justifyContent: "center",
-    width: "50%",
-    flexShrink: 0,
-    paddingTop: 10,
-    paddingBottom: 10,
-    alignItems: "center"
-  }
-}
+const StyledContent = styled.aside`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: scroll;
+`
 
 class Content extends React.Component {
   render() {
-    return (
-      <div style={styles.container}>
-        <div style={styles.tabs}>
-          <div className="tab" style={Object.assign({}, styles.tab, {backgroundColor: "#fff", borderRight: "1px solid #bbb"})}>Holdings</div>
-          <div className="tab" style={Object.assign({}, styles.tab, {color: "#808080"})}>Performance</div>
-        </div>
+    const tabs = {
+      portfolio: [
+        {name: "Holdings", path: "/portfolio/holdings"},
+        {name: "Performance", path: "/portfolio/performance"},
+        {name: "Fake tab", path: "/portfolio/fake"}
+      ],
+      transactions: [
+        {name: "Trades", path: "/transactions/trades"},
+        {name: "Transfers", path: "/transactions/transfers"}
+      ]
+    };
+    const pathStart = this.props.location.pathname.split("/")[1];
 
-        <Switch>
-          <Route path="/portfolio" component={Portfolio} />
-          <Route path="/transactions" component={Transactions} />
-        </Switch>
-      </div>
+    return (
+      <StyledContent>
+        <Tabs tabs={tabs[pathStart]} />
+
+        <Redirect from="/" to="/portfolio/holdings" />
+        <Route path="/portfolio" component={Portfolio} />
+        <Route path="/transactions" component={Transactions} />
+      </StyledContent>
     );
   }
 }
