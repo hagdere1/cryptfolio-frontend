@@ -2,6 +2,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
+
+import Trades from './Trades';
+import Transfers from './Transfers';
 
 const styles = {
   container: {
@@ -26,8 +30,8 @@ class Transactions extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        TRANSACTIONS
-        {/*this.state.transactions.map(transaction => <p>{transaction}</p>)*/}
+        <Route path="/transactions/trades" render={(props) => <Trades {...props} data={[]} />} />
+        <Route path="/transactions/transfers" render={(props) => <Transfers {...props} data={[]} />} />
       </div>
     );
   }

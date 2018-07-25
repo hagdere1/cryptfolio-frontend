@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledTabs = styled.aside`
+const StyledTabs = styled.ul`
   display: flex;
   flex-shrink: 0;
   justify-content: space-around;
   background-color: #f0f0f0;
 `
-const Tab = styled.div`
+const Tab = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,6 +21,7 @@ const Tab = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   border-right: 1px solid #bbb;
+  cursor: pointer;
 
   &:last-child {
     border-right: 0;
@@ -39,9 +40,11 @@ const Tab = styled.div`
 // }
 
 const Tabs = (props) => (
-  <StyledTabs>
-    {props.tabs.map((tab, idx) => <Tab key={idx} width={100 / props.tabs.length} selected={props.location.pathname === tab.path} onClick={() => props.history.push(tab.path)}>{tab.name}</Tab>)}
-  </StyledTabs>
+  <nav>
+    <StyledTabs>
+      {props.tabs.map((tab, idx) => <Tab key={idx} width={100 / props.tabs.length} selected={props.location.pathname === tab.path} onClick={() => props.history.push(tab.path)}>{tab.name}</Tab>)}
+    </StyledTabs>
+  </nav>
 );
 
 // const mapStateToProps = (state) => {

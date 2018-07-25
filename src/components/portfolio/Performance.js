@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 class Performance extends React.Component {
   render() {
     return (
-      <div>
+      <article>
         PERFORMANCE
-      </div>
+      </article>
     );
   }
 }

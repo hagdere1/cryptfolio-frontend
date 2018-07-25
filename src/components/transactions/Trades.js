@@ -2,13 +2,11 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import PieChart from './PieChart';
-
-class Holdings extends React.Component {
+class Trades extends React.Component {
   render() {
     return (
       <article>
-        <PieChart data={this.props.data} />
+        TRADES
       </article>
     );
   }
@@ -26,4 +24,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Holdings)
+export default connect(mapStateToProps, mapDispatchToProps)(Trades);
