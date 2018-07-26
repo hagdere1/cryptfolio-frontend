@@ -15,6 +15,10 @@ body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
+section, article, aside, footer, header, nav {
+  display: block;
+}
+
 #app {
   height: 100%;
 }

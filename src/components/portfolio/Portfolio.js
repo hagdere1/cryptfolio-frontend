@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 import Holdings from './Holdings';
 import Performance from './Performance';
@@ -47,8 +47,11 @@ class Portfolio extends React.Component {
   render() {
     return (
       <div>
-        <Route path="/portfolio/holdings" render={(props) => <Holdings {...props} data={this.state.pieData} />} />
-        <Route path="/portfolio/performance" render={(props) => <Performance {...props} data={[]} />} />
+        <Switch>
+          <Redirect from="/" to="/portfolio/holdings" exact />
+          <Route path="/portfolio/holdings" render={(props) => <Holdings {...props} data={this.state.pieData} />} />
+          <Route path="/portfolio/performance" render={(props) => <Performance {...props} data={[]} />} />
+        </Switch>
       </div>
     );
   }

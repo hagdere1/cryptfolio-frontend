@@ -28,21 +28,17 @@ const Tab = styled.li`
   }
 `
 
-// class Tabs extends React.Component {
-//   render() {
-//     return (
-//       <StyledTabs>
-//         <Tab selected={this.props.pathname === "/portfolio/holdings"} onClick={() => this.props.history.push("/portfolio/holdings")}>Holdings</Tab>
-//         <Tab selected={this.props.pathname === "/portfolio/performance"} onClick={() => this.props.history.push("/portfolio/performance")}>Performance</Tab>
-//       </StyledTabs>
-//     );
-//   }
-// }
-
 const Tabs = (props) => (
   <nav>
     <StyledTabs>
-      {props.tabs.map((tab, idx) => <Tab key={idx} width={100 / props.tabs.length} selected={props.location.pathname === tab.path} onClick={() => props.history.push(tab.path)}>{tab.name}</Tab>)}
+      {props.tabs ?
+        props.tabs.map((tab, idx) => <Tab key={idx}
+                                          width={100 / props.tabs.length}
+                                          selected={props.location.pathname === tab.path}
+                                          onClick={() => props.history.push(tab.path)}
+                                     >
+                                       {tab.name}
+                                     </Tab>) : <li></li>}
     </StyledTabs>
   </nav>
 );

@@ -15,28 +15,30 @@ const StyledContent = styled.aside`
   overflow-y: scroll;
 `
 
+const tabs = {
+  portfolio: [
+    {name: "Holdings", path: "/portfolio/holdings"},
+    {name: "Performance", path: "/portfolio/performance"},
+    {name: "Fake tab", path: "/portfolio/fake"}
+  ],
+  transactions: [
+    {name: "Trades", path: "/transactions/trades"},
+    {name: "Transfers", path: "/transactions/transfers"}
+  ]
+};
+
 class Content extends React.Component {
   render() {
-    const tabs = {
-      portfolio: [
-        {name: "Holdings", path: "/portfolio/holdings"},
-        {name: "Performance", path: "/portfolio/performance"},
-        {name: "Fake tab", path: "/portfolio/fake"}
-      ],
-      transactions: [
-        {name: "Trades", path: "/transactions/trades"},
-        {name: "Transfers", path: "/transactions/transfers"}
-      ]
-    };
     const pathStart = this.props.location.pathname.split("/")[1];
 
     return (
       <StyledContent>
         <Tabs tabs={tabs[pathStart]} />
 
-        <Redirect from="/" to="/portfolio/holdings" />
-        <Route path="/portfolio" component={Portfolio} />
-        <Route path="/transactions" component={Transactions} />
+        <Switch>
+          <Route path="/portfolio" component={Portfolio} />
+          <Route path="/transactions" component={Transactions} />
+        </Switch>
       </StyledContent>
     );
   }

@@ -27,10 +27,12 @@ class PieChart extends React.Component {
     };
 
     return (
-      <HighchartsChart plotOptions={plotOptions}>
-        <Chart backgroundColor={null} />
-        <PieSeries name="Portfolio" data={this.props.data} size={250} />
-      </HighchartsChart>
+      <figure>
+        <HighchartsChart plotOptions={plotOptions}>
+          <Chart backgroundColor={null} />
+          <PieSeries name="Portfolio" data={this.props.data} size={250} />
+        </HighchartsChart>
+      </figure>
     );
   }
 }
